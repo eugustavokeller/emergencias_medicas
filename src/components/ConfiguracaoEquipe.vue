@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col">
-        <h5><i class="bi-boxes me-2"></i>Configuração da equipe</h5>
+        <h5><i class="bi-boxes me-2"></i>{{ tituloCustomizado }}</h5>
       </div>
     </div>
     <div class="row">
@@ -34,6 +34,9 @@
 import { mapState } from 'vuex'
 // import { mapState } from 'vuex'
 export default {
+    data: () => ({
+      titulo: '*** Configuração equipe ***'
+    }),
     name: 'ConfiguracaoEquipe',
     //computed: mapState(['equipe']),
 
@@ -49,6 +52,9 @@ export default {
       carro: state => state.equipe.carro,
       telefone: state => state.equipe.telefone,
       kit_reanimacao: state => state.equipe.kit_reanimacao,
+      tituloCustomizado(state) {
+        return `${this.titulo} - ${state.equipe.carro}`
+      }
     })
 }
 </script>
