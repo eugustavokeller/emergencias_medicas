@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col">
-        <h5><i class="bi-boxes me-2"></i>{{ tituloCustomizado }}</h5>
+        <h5 :class="corTitulo"><i class="bi-boxes me-2"></i>{{ tituloCustomizado }}</h5>
       </div>
     </div>
     <div class="row">
@@ -45,16 +45,26 @@ export default {
     //     return this.$store.state.equipe
     //   } 
     // }
-    computed: mapState({
-      enfermeiro: state => state.equipe.enfermeiro,
-      socorrista: state => state.equipe.socorrista,
-      medico: state => state.equipe.medico,
-      carro: state => state.equipe.carro,
-      telefone: state => state.equipe.telefone,
-      kit_reanimacao: state => state.equipe.kit_reanimacao,
-      tituloCustomizado(state) {
-        return `${this.titulo} - ${state.equipe.carro}`
-      }
-    })
+    computed: {
+      ...mapState({
+        enfermeiro: state => state.equipe.enfermeiro,
+        socorrista: state => state.equipe.socorrista,
+        medico: state => state.equipe.medico,
+        carro: state => state.equipe.carro,
+        telefone: state => state.equipe.telefone,
+        kit_reanimacao: state => state.equipe.kit_reanimacao,
+        tituloCustomizado(state) {
+          return `${this.titulo} - ${state.equipe.carro}`
+        }
+      }),
+      corTitulo() {
+        let testeLogico = true
+        if(testeLogico) {
+          return 'text-danger'
+        } else {
+          return 'text-primary'
+        }
+      },
+    }
 }
 </script>
