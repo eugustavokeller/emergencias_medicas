@@ -19,7 +19,7 @@ export default new Vuex.Store({
             { id: 4, nome: 'Felipe', escala: '12x36'}
         ],
         socorristas: [
-            { id: 1, nome: 'Marcos', turno: 'manhã'},
+            { id: 1, nome: 'Marcos', turno: 'manha'},
             { id: 2, nome: 'Felipe', turno: 'tarde'},
             { id: 3, nome: 'Cláudia', turno: 'tarde'},
             { id: 4, nome: 'Michele', turno: 'noite'}
@@ -54,6 +54,9 @@ export default new Vuex.Store({
     getters: {
         totalEnfermeiros(state) {
             return state.enfermeiros.length
-        }
+        },
+        socorristaPorTurno(state) {
+            return turno => !turno ? state.socorristas : state.socorristas.filter(s => s.turno === turno)
+        } 
     }
 })

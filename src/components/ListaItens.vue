@@ -1,22 +1,13 @@
 <template>
     <div>
-        <!-- <table class="table mt-4">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">NOME</th>
-                    <th scope="col">ESCALA</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(i, chave) in itens" :key="chave">
-                    <td>{{ i.id }}</td>
-                    <td>{{ i.nome }}</td>
-                    <td>{{ i.escala }}</td>
-                </tr>    
-            </tbody>
-        </table>
-        <br> -->
+        <div v-if="tipo == 'socorristas'">
+            <select class="form-control form-control-sm" v-model="turno">
+                <option value="">--- Turno ---</option>
+                <option value="manha">Manhã</option>
+                <option value="tarde">Tarde</option>
+                <option value="noite">Noite</option>
+            </select>
+        </div>
         <item 
             v-for="(item, indice) in itens"
             :key="indice"
@@ -37,10 +28,12 @@ export default {
     props: {
         tipo: String
     },
+    data: () => ({
+        turno: ''
+    }),
     computed: {
         ...mapState({
             enfermeiros: state => state.enfermeiros,
-            socorristas: state => state.socorristas,
             medicos: state => state.medicos,
             carros: state => state.equipamentos.carros,
             telefones: state => state.equipamentos.telefones,
@@ -49,7 +42,7 @@ export default {
         itens() {
             switch(this.tipo) {
                 case 'enfermeiros': return this.enfermeiros
-                case 'socorristas': return this.socorristas
+                case 'socorristas': return this.$store.getters.socorristaPorTurno(this.turno)
                 case 'medicos': return this.medicos
                 case 'carros': return this.carros
                 case 'telefones': return this.telefones
