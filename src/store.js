@@ -61,5 +61,8 @@ export default new Vuex.Store({
         totalSocorristas: state => state.socorristas.length,
         totalSocorristasPorTurno: (state, getters) => turno => getters.socorristaPorTurno(turno).length
 
+    },
+    mutations: {
+        setItemEquipe(state, payload)   
     }
 })
