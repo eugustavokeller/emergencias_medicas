@@ -31,7 +31,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: 'Profissionais',
+    computed: {
+        ...mapGetters({
+            totalSocorristasPorTurno: 'totalSocorristasPorTurno'
+        }),
+    }
 }
 </script>
