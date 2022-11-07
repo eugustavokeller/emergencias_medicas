@@ -13,6 +13,10 @@
             :key="indice"
             :dados="item"
         />
+        <hr>
+        <div v-if="tipo == 'socorristas'">
+            Total ({{ $store.getters.totalSocorristasPorTurno(turno) }})
+        </div>
     </div>
 </template>
 
