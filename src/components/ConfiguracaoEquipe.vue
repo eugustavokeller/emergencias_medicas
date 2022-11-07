@@ -34,7 +34,7 @@
 import { mapState } from 'vuex'
 export default {
     data: () => ({
-      titulo: '*** Configuração equipe ***'
+      titulo: 'Configuração Equipe'
     }),
     name: 'ConfiguracaoEquipe',
     //computed: mapState(['equipe']),
@@ -52,8 +52,8 @@ export default {
         carro: state => state.equipe.carro,
         telefone: state => state.equipe.telefone,
         kit_reanimacao: state => state.equipe.kit_reanimacao,
-        tituloCustomizado(state) {
-          return `${this.titulo} - ${state.equipe.carro}`
+        tituloCustomizado() {
+          return this.titulo
         }
       }),
       corTitulo() {
