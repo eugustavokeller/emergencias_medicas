@@ -4,12 +4,12 @@ export default new Vuex.Store({
     state: {
         titulo: 'Emergências Médicas',
         equipe: {
-            enfermeiro: 'Nome do enfermeiro',
-            socorrista: 'Nome do socorrista',
-            medico: 'Nome do medico',
-            carro: 'AAA-1111',
-            telefone: '11 00000-0000',
-            kit_reanimacao: 'Kit 001',
+            enfermeiro: '',
+            socorrista: '',
+            medico: '',
+            carro: '',
+            telefone: '',
+            kit_reanimacao: '',
         },
         enfermeiros: [
             { id: 1, nome: 'João', escala: '12x36'},
@@ -63,6 +63,10 @@ export default new Vuex.Store({
 
     },
     mutations: {
-        setItemEquipe(state, payload)   
+        setItemEquipe(state, item) {
+
+            console.log(state)
+            console.log(item)
+        }
     }
 })
