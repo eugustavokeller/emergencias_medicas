@@ -12,6 +12,7 @@
             v-for="(item, indice) in itens"
             :key="indice"
             :dados="item"
+            :tipo="tipo"
         />
         <hr>
         <div v-if="tipo == 'socorristas'">
@@ -30,6 +31,7 @@ export default {
     components: { 
         Item
     },
+    // Recebendo via props o TIPO
     props: {
         tipo: String
     },
@@ -64,22 +66,5 @@ export default {
             return []
         }
     },
-    methods: {
-        adicionarItemEquipe() {
-
-        },
-        adicionarItemEquipeAbordagemIncorreta() {
-            // abordagem incorreta
-            let t = this.tipo
-            let d = this.dados
-
-            t == 'enfermeiros' ? this.$store.state.equipe.enfermeiro = d.nome : null
-            t == 'socorristas' ? this.$store.state.equipe.enfermeiro = d.nome : null
-            t == 'medicos' ? this.$store.state.equipe.enfermeiro = d.nome : null
-            t == 'carros' ? this.$store.state.equipe.enfermeiro = d.nome : null
-            t == 'telefones' ? this.$store.state.equipe.enfermeiro = d.nome : null
-            t == 'kit_reanimacao' ? this.$store.state.equipe.kitsDeReanimacao = d.kit : null
-        }
-    }
 }
 </script>
