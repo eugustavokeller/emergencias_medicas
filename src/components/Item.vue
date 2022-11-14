@@ -33,7 +33,21 @@ export default {
                 tipo: this.tipo,
                 dados: this.dados
             }
-            this.$store.commit('setItemEquipe', item)
+            // this.$store.commit('setItemEquipe', item)  **Notacao normal**
+            
+            /*this.$store.commit({ // Notação de Objeto
+                type: 'setItemEquipe',
+                item // sem chave e valor o JS identifica o nome sendo a chave e também o valor, Ex: item: item
+            })
+            */
+
+            this.$store.commit({ // Enviando vários parametros para serem recuperados como payload nas mutations...
+                type: 'setItemEquipe',
+                item,
+                abc: 'ABC',
+                numero: 7.7,
+                xyz: true
+            })
         },
         adicionarItemEquipeAbordagemIncorreta() {
             // abordagem incorreta
