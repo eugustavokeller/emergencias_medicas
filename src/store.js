@@ -63,10 +63,17 @@ export default new Vuex.Store({
 
     },
     mutations: {
-        setItemEquipe(state, item) {
+        setItemEquipe(state, { item }) { // Destructuring no JS pode extrair somente aquilo que precisa dentro de objeto que está sendo encaminhado...
 
-            console.log(state)
-            console.log(item)
+            let t = item.tipo
+            let d = item.dados
+
+            if(t == 'enfermeiros') state.equipe.enfermeiro = d.nome
+            if(t == 'socorristas') state.equipe.socorrista = d.nome
+            if(t == 'medicos') state.equipe.medico = d.nome
+            if(t == 'carros') state.equipe.carro = d.placa
+            if(t == 'telefones') state.equipe.telefone = d.telefone
+            if(t == 'kits-de-reanimacao') state.equipe.kit_reanimacao = d.kit
         }
     }
 })
