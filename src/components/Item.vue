@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
     name: 'Item',
     props: {
@@ -28,6 +29,10 @@ export default {
         tipo: String
     },
     methods: {
+        // ...mapMutations(['setItemEquipe']), Notaçao de array
+        ...mapMutations({ // Notaçao de objeto
+            setItemEquipe: 'setItemEquipe'
+        }),
         adicionarItemEquipe() {
             let item = {
                 tipo: this.tipo,
@@ -41,13 +46,14 @@ export default {
             })
             */
 
-            this.$store.commit({ // Enviando vários parametros para serem recuperados como payload nas mutations...
-                type: 'setItemEquipe',
-                item,
-                abc: 'ABC',
-                numero: 7.7,
-                xyz: true
-            })
+            // this.$store.commit({ // Enviando vários parametros para serem recuperados como payload nas mutations...
+            //     type: 'setItemEquipe',
+            //     item,
+            //     abc: 'ABC',
+            //     numero: 7.7,
+            //     xyz: true
+            // })
+            this.setItemEquipe(item)
         },
         adicionarItemEquipeAbordagemIncorreta() {
             // abordagem incorreta
