@@ -8,6 +8,7 @@
                 <option value="noite">Noite</option>
             </select>
         </div>
+        <!-- enviando tipo e dados para o componente item que recebera via props -->
         <item class="mt-1"
             v-for="(item, indice) in itens"
             :key="indice"
