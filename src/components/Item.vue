@@ -31,7 +31,18 @@ export default {
     methods: {
         // ...mapMutations(['setItemEquipe']), Notaçao de array
         ...mapMutations({ // Notaçao de objeto
-            setItemEquipe: 'setItemEquipe'
+            setItemEquipe: 'setItemEquipe',
+            setItemEquipeComVerificacao: (commit, payload) => {
+
+                /*
+                    pode verificar se há valor no payload antes do commit
+                    pode ser validado se o item está sendo utilizado por outra equipe 
+                    adicionado ao banco se está disponivel ou não e capturar essa informaçao para pode montar as equipes
+                */
+               commit('setItemEquipe', payload);
+
+
+            }
         }),
         adicionarItemEquipe() {
             let item = {
@@ -53,7 +64,7 @@ export default {
             //     numero: 7.7,
             //     xyz: true
             // })
-            this.setItemEquipe(item)
+            this.setItemEquipeComVerificacao(item)
         },
         adicionarItemEquipeAbordagemIncorreta() {
             // abordagem incorreta
