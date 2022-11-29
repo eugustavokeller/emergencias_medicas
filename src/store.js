@@ -1,3 +1,4 @@
+
 import Vuex from 'vuex'
 
 export default new Vuex.Store({
@@ -74,6 +75,29 @@ export default new Vuex.Store({
             if(t == 'carros') state.equipe.carro = d.placa
             if(t == 'telefones') state.equipe.telefone = d.telefone
             if(t == 'kits-de-reanimacao') state.equipe.kit_reanimacao = d.kit
+        },
+        setEnfermeiros(state, payload) {
+            state.enfermeiros = payload
+        },
+        setSocorristas(state, payload) {
+            state.socorristas = payload
+        },
+        setMedicos(state, payload) {
+            state.medicos = payload
+        },
+        setCarros(state, { carros }) {
+            state.equipamentos.carros = carros
+        },
+        setTelefones(state, { telefones }) {
+            state.equipamentos.telefones = telefones
+        },
+        setKitDeReanimacao(state, payload) {
+            console.log(payload)
+        },
+    },
+    actions: {
+        adicionarEquipamentos(context, payload) {
+            console.log(payload)
         }
     }
 })

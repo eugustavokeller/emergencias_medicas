@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import ConfiguracaoEquipe from './ConfiguracaoEquipe.vue'
 import Equipamentos from './Equipamentos.vue'
 import Equipes from './Equipes.vue'
@@ -50,6 +51,37 @@ export default {
   name: 'Index',
   props: {
     msg: String
+  },
+  computed: {
+    tituloCustomizado() {
+      return `.: ${this.$store.state.titulo}`
+    }
+  },
+  methods: {
+    ...mapMutations([
+      'setEnfermeiros',
+      'setSocorristas',
+      'setMedicos',
+      'setCarros'
+    ])
+  },
+  created() {
+    fetch('http://localhost:8080/enfermeiros')
+      .then(response => response.json())
+      .then(dados => this.setEnfermeiros(dados))
+    fetch('http://localhost:8080/socorristas')
+      .then(response => response.json())
+      .then(dados => this.setSocorristas(dados))
+    fetch('http://localhost:8080/medicos')
+      .then(response => response.json())
+      .then(dados => this.setMedicos(dados))
+    fetch('http://localhost:8080/equipamentos')
+      .then(response => response.json())
+      .then(dados => {
+        this.setCarros(dados),
+        this.setTelefones(dados),
+        this.setKitsDeReanimacao(dados)
+      })
   }
 }
 </script>
