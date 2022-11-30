@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">{{ $store.state.titulo }}</a>
@@ -42,7 +42,7 @@ import Equipes from './Equipes.vue'
 import Profissionais from './Profissionais.vue'
 
 export default {
-  components: { 
+  components: {
     ConfiguracaoEquipe,
     Equipamentos,
     Equipes,
@@ -62,26 +62,34 @@ export default {
       'setEnfermeiros',
       'setSocorristas',
       'setMedicos',
-      'setCarros'
+      'setCarros',
+      'setTelefones',
+      'setKitsDeReanimacao'
     ])
   },
   created() {
-    fetch('http://localhost:8080/enfermeiros')
+    fetch('http://localhost:3000/enfermeiros')
       .then(response => response.json())
       .then(dados => this.setEnfermeiros(dados))
-    fetch('http://localhost:8080/socorristas')
+    fetch('http://localhost:3000/socorristas')
       .then(response => response.json())
       .then(dados => this.setSocorristas(dados))
-    fetch('http://localhost:8080/medicos')
+    fetch('http://localhost:3000/medicos')
       .then(response => response.json())
       .then(dados => this.setMedicos(dados))
-    fetch('http://localhost:8080/equipamentos')
+
+    fetch('http://localhost:3000/equipamentos')
       .then(response => response.json())
       .then(dados => {
-        this.setCarros(dados),
-        this.setTelefones(dados),
-        this.setKitsDeReanimacao(dados)
+        this.$store.dispatch('adicionarEquipamentos', dados)
       })
+    // fetch('http://localhost:3000/equipamentos')
+    //   .then(response => response.json())
+    //   .then(dados => {
+    //     this.setCarros(dados),
+    //     this.setTelefones(dados),
+    //     this.setKitsDeReanimacao(dados)
+    //   })
   }
 }
 </script>

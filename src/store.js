@@ -85,19 +85,25 @@ export default new Vuex.Store({
         setMedicos(state, payload) {
             state.medicos = payload
         },
-        setCarros(state, { carros }) {
+        setCarros(state, carros) {
             state.equipamentos.carros = carros
         },
-        setTelefones(state, { telefones }) {
+        setTelefones(state, telefones) {
             state.equipamentos.telefones = telefones
         },
-        setKitDeReanimacao(state, payload) {
-            console.log(payload)
+        setKitsDeReanimacao(state, kitsDeReanimacao) {
+            state.equipamentos.kitsDeReanimacao = kitsDeReanimacao
         },
     },
     actions: {
-        adicionarEquipamentos(context, payload) {
-            console.log(payload)
+        adicionarEquipamentos(context, { carros, kitsDeReanimacao, telefones }) {
+            context.commit('setCarros', carros)
+            // processamento assincrono
+            context.commit('setTelefones', telefones)
+            // processamento assincrono
+            // diversas regras de negócio
+            context.commit('setKitsDeReanimacao', kitsDeReanimacao)
+            
         }
     }
 })
